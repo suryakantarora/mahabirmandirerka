@@ -11,6 +11,7 @@ if (
 
 const config: NextConfig = {
   turbopack: { root: process.cwd() },
+  devIndicators: false,
   output: "export",
   images: { unoptimized: true },
   trailingSlash: true,
