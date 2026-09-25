@@ -1,0 +1,38 @@
+[
+  {
+    "id": "tuesday-puja",
+    "important": true,
+    "date": "",
+    "text": {
+      "hi": "मंगलवार विशेष पूजा • आइए, मिलकर करें हनुमान जी की आराधना",
+      "en": "Tuesday Special Puja • Come together in devotion to Hanuman Ji"
+    }
+  },
+  {
+    "id": "festival-info",
+    "important": false,
+    "date": "",
+    "text": {
+      "hi": "विशेष पूजा एवं त्योहारों की जानकारी मंदिर से संपर्क करके प्राप्त करें।",
+      "en": "Contact the temple for special puja and festival arrangements."
+    }
+  },
+  {
+    "id": "cleaning",
+    "important": false,
+    "date": "",
+    "text": {
+      "hi": "स्वच्छता अभियान एवं सामुदायिक बैठक की तिथियाँ जल्द साझा की जाएँगी।",
+      "en": "Dates for the temple cleaning drive and community meeting will be shared soon."
+    }
+  },
+  {
+    "id": "aarti-time",
+    "important": false,
+    "date": "",
+    "text": {
+      "hi": "त्योहारों पर आरती के समय में परिवर्तन की सूचना यहाँ दी जाएगी।",
+      "en": "Any change in aarti timings during festivals will be announced here."
+    }
+  }
+]

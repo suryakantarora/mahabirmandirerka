@@ -1,0 +1,89 @@
+[
+  {
+    "id": "tuesday",
+    "name": { "hi": "मंगलवार विशेष पूजा", "en": "Tuesday Special Puja" },
+    "tag": { "hi": "साप्ताहिक आराधना", "en": "Weekly worship" },
+    "weekday": 2,
+    "time": { "hi": "संध्या 06:00 बजे", "en": "06:00 PM" },
+    "image": "puja",
+    "description": {
+      "hi": "हनुमान जी की आराधना, सामूहिक चालीसा पाठ और संध्या आरती में शामिल हों।",
+      "en": "Join the community for Hanuman worship, Chalisa recitation and evening aarti."
+    }
+  },
+  {
+    "id": "saturday",
+    "name": { "hi": "शनिवार विशेष पूजा", "en": "Saturday Special Puja" },
+    "tag": { "hi": "साप्ताहिक आराधना", "en": "Weekly worship" },
+    "weekday": 6,
+    "time": { "hi": "संध्या 06:00 बजे", "en": "06:00 PM" },
+    "image": "puja",
+    "description": {
+      "hi": "शनिवार को सुंदरकांड पाठ, तेल-सिंदूर अर्पण एवं सामूहिक आरती।",
+      "en": "Sundarkand recitation, oil and sindoor offering and community aarti every Saturday."
+    }
+  },
+  {
+    "id": "jayanti",
+    "name": { "hi": "श्री हनुमान जयंती", "en": "Shri Hanuman Jayanti" },
+    "tag": { "hi": "भक्ति का उत्सव", "en": "A celebration of devotion" },
+    "date": "",
+    "time": { "hi": "समय जल्द उपलब्ध होगा", "en": "Time to be announced" },
+    "image": "temple",
+    "description": {
+      "hi": "भजन, पूजा और सामूहिक आराधना के साथ हनुमान जी का जन्मोत्सव। अंतिम कार्यक्रम की पुष्टि शेष है।",
+      "en": "Celebrate Hanuman Ji's birth with devotional songs and community worship. The final programme awaits confirmation."
+    }
+  },
+  {
+    "id": "ramnavami",
+    "name": { "hi": "श्री राम नवमी", "en": "Shri Ram Navami" },
+    "tag": {
+      "hi": "प्रभु श्रीराम का प्राकट्योत्सव",
+      "en": "Birth of Lord Rama"
+    },
+    "date": "",
+    "time": { "hi": "समय जल्द उपलब्ध होगा", "en": "Time to be announced" },
+    "image": "hero",
+    "description": {
+      "hi": "रामचरितमानस पाठ, झाँकी एवं प्रसाद वितरण। तिथि की घोषणा जल्द होगी।",
+      "en": "Ramcharitmanas recitation, tableau and prasad distribution. Date to be announced."
+    }
+  },
+  {
+    "id": "navratri",
+    "name": { "hi": "नवरात्रि", "en": "Navratri" },
+    "tag": { "hi": "नौ दिवसीय शक्ति आराधना", "en": "Nine nights of devotion" },
+    "date": "",
+    "time": { "hi": "प्रतिदिन संध्या आरती", "en": "Evening aarti daily" },
+    "image": "puja",
+    "description": {
+      "hi": "नौ दिनों तक विशेष पूजा, भजन संध्या एवं कन्या पूजन। कार्यक्रम विवरण जल्द साझा होगा।",
+      "en": "Nine days of special puja, bhajan evenings and kanya pujan. Programme details will be shared soon."
+    }
+  },
+  {
+    "id": "diwali",
+    "name": { "hi": "दीपावली महोत्सव", "en": "Diwali Celebrations" },
+    "tag": { "hi": "प्रकाश और प्रार्थना", "en": "Light and prayer" },
+    "date": "",
+    "time": { "hi": "समय जल्द उपलब्ध होगा", "en": "Time to be announced" },
+    "image": "hero",
+    "description": {
+      "hi": "दीपों और प्रार्थना के साथ मिलकर मनाएँ खुशियों का पर्व। आयोजन का विवरण जल्द उपलब्ध होगा।",
+      "en": "Come together for the festival of lights and prayer. Details of the celebration will be shared soon."
+    }
+  },
+  {
+    "id": "holi",
+    "name": { "hi": "होली मिलन", "en": "Holi Milan" },
+    "tag": { "hi": "रंगों का उत्सव", "en": "Festival of colours" },
+    "date": "",
+    "time": { "hi": "समय जल्द उपलब्ध होगा", "en": "Time to be announced" },
+    "image": "temple",
+    "description": {
+      "hi": "होलिका दहन के पश्चात मंदिर प्रांगण में फगुआ गायन एवं होली मिलन।",
+      "en": "Phagua singing and a community Holi gathering in the temple courtyard after Holika Dahan."
+    }
+  }
+]

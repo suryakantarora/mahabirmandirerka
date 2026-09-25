@@ -1,0 +1,27 @@
+[
+  {
+    "name": { "hi": "सूर्यकांत", "en": "Suryakant" },
+    "role": { "hi": "अध्यक्ष", "en": "President" },
+    "photo": ""
+  },
+  {
+    "name": { "hi": "संजीव", "en": "Sanjeev" },
+    "role": { "hi": "उपाध्यक्ष", "en": "Vice President" },
+    "photo": ""
+  },
+  {
+    "name": { "hi": "सतीश", "en": "Satish" },
+    "role": { "hi": "सचिव", "en": "Secretary" },
+    "photo": ""
+  },
+  {
+    "name": { "hi": "रमाकांत सिंह", "en": "Ramakant Singh" },
+    "role": { "hi": "कोषाध्यक्ष", "en": "Treasurer" },
+    "photo": ""
+  },
+  {
+    "name": { "hi": "सुनील सिंह", "en": "Sunil Singh" },
+    "role": { "hi": "समिति सदस्य", "en": "Committee Member" },
+    "photo": ""
+  }
+]
