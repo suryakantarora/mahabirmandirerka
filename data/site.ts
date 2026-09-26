@@ -141,7 +141,13 @@ export type Announcement = {
 };
 export const announcements: Announcement[] = announcementsJson;
 
-export type Member = { name: Localized; role: Localized; photo: string };
+export type Member = {
+  name: Localized;
+  role: Localized;
+  /** Optional 10-digit Indian mobile number, shown as a call link. */
+  phone?: string;
+  photo: string;
+};
 export const committee: Member[] = committeeJson;
 
 export type Video = {

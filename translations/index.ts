@@ -121,11 +121,10 @@ export const copy = {
   noVideos: bi("अभी कोई वीडियो उपलब्ध नहीं है।", "No videos are available yet."),
   committee: bi("मंदिर प्रबंधन समिति", "Temple Management Committee"),
   committeeKicker: bi("सेवा ही संकल्प", "United in service"),
-  committeeNote: bi(
-    "नाम एवं पद नमूना हैं। आधिकारिक समिति विवरण की पुष्टि शेष है।",
-    "Names and roles are placeholders. Official committee details await confirmation.",
-  ),
   photoSoon: bi("चित्र जल्द उपलब्ध होगा", "Photo coming soon"),
+  viewAllMembers: bi("पूरी समिति", "Full committee"),
+  membersLabel: bi("सदस्य", "members"),
+  viewAll: bi("सभी देखें", "View all"),
   donationTitle: bi(
     "आपका सहयोग,\nसेवा का संकल्प।",
     "Your generosity.\nOur shared devotion.",

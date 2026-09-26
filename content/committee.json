@@ -1,22 +1,35 @@
 [
   {
-    "name": { "hi": "सूर्यकांत", "en": "Suryakant" },
+    "name": { "hi": "राजन पांडेय", "en": "Rajan Pandey" },
     "role": { "hi": "अध्यक्ष", "en": "President" },
+    "phone": "7903433491",
+    "photo": ""
+  },
+  {
+    "name": { "hi": "पिंटू सिंह", "en": "Pintu Singh" },
+    "role": { "hi": "उपाध्यक्ष", "en": "Vice President" },
+    "phone": "7004974853",
+    "photo": ""
+  },
+  {
+    "name": { "hi": "मंटू गुप्ता", "en": "Mantu Gupta" },
+    "role": { "hi": "सचिव", "en": "Secretary" },
+    "phone": "8249025298",
+    "photo": ""
+  },
+  {
+    "name": { "hi": "सूर्यकांत", "en": "Suryakant" },
+    "role": { "hi": "समिति सदस्य", "en": "Committee Member" },
     "photo": ""
   },
   {
     "name": { "hi": "संजीव", "en": "Sanjeev" },
-    "role": { "hi": "उपाध्यक्ष", "en": "Vice President" },
+    "role": { "hi": "समिति सदस्य", "en": "Committee Member" },
     "photo": ""
   },
   {
     "name": { "hi": "सतीश", "en": "Satish" },
-    "role": { "hi": "सचिव", "en": "Secretary" },
-    "photo": ""
-  },
-  {
-    "name": { "hi": "रमाकांत सिंह", "en": "Ramakant Singh" },
-    "role": { "hi": "कोषाध्यक्ष", "en": "Treasurer" },
+    "role": { "hi": "समिति सदस्य", "en": "Committee Member" },
     "photo": ""
   },
   {

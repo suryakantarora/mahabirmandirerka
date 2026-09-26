@@ -1,10 +1,26 @@
-# Mahavir Mandir — Erka
+# Mahavir Mandir, Erka
 
-A bilingual, responsive temple website built with Next.js App Router, React and TypeScript. Hindi and light mode are the defaults; visitor preferences persist locally. Custom CSS provides the cream, saffron and maroon design. All fonts and photographs are served locally.
+The official website of Mahavir Mandir (Hanuman temple) in Erka, Kutumba, Aurangabad district, Bihar.
 
-## Run
+The site is bilingual (Hindi by default, English on request), works on phones and desktops, and has a light and a dark theme. It is built with Next.js, React and TypeScript and exported as a plain static website, so it can be hosted anywhere without a server.
 
-Use Node.js 22.13+ and npm.
+## What the site offers
+
+- **Temple information** with address, phone, WhatsApp, email and a Google Map that loads only when a visitor asks for it.
+- **Darshan and aarti timings** with a live open/closed indicator once timings are verified.
+- **Events and festivals** driven by a JSON file, with the next occurrence highlighted and a countdown for the nearest festival.
+- **Puja services** offered by the temple.
+- **Shri Hanuman Chalisa** with an audio recording, a reader dialog in Devanagari and Roman script, and a print / save-as-PDF option.
+- **Bhajans and videos** from YouTube, shown as thumbnails and played only on demand.
+- **Photo gallery** with category filters and a keyboard-accessible lightbox.
+- **Committee** members and roles.
+- **Donations** by UPI, with the temple committee's bank-issued QR code, a copyable UPI ID and a one-tap payment link on phones.
+- **Announcements** with an optional banner at the top of the page.
+- **Contact form**, floating WhatsApp button, privacy and donation policy dialogs, and a small offline cache so the Chalisa keeps working without a connection.
+
+## Getting started
+
+Requires Node.js 22.13 or newer and npm.
 
 ```sh
 npm install
@@ -13,101 +29,127 @@ npm run dev
 
 Open http://localhost:3000.
 
+| Command             | Purpose                                                     |
+| ------------------- | ----------------------------------------------------------- |
+| `npm run dev`       | Development server with live reload                         |
+| `npm run build`     | Production build; writes the complete static site to `out/` |
+| `npm run typecheck` | TypeScript check                                            |
+| `npm test`          | Browser tests with Playwright (needs a server on port 3000) |
+| `npm run format`    | Format source files with Prettier                           |
+
+To preview the production export locally, serve the `out/` folder with any static server, for example:
+
 ```sh
-npm run build
-npm run typecheck
+npx serve out -l 3000
 ```
 
-`npm run build` produces a complete static website in `out/`. No Node.js server is needed in production. To preview the export locally, run `python3 -m http.server 3001 --directory out` and open http://localhost:3001. Do not use `next start` with static export.
+Do not use `next start`; the project is configured for static export.
 
-## Configuration
+## Updating content
 
-| File                           | What to edit                                                                                                                                                                                   |
-| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `content/events.json`          | Events and festivals. Give one-off festivals an ISO `date`; weekly pujas use `weekday` (0 = Sunday). The next occurrence is highlighted and a countdown appears for the nearest dated festival |
-| `content/announcements.json`   | Temple notices. The first `important: true` notice becomes the banner at the top of the page                                                                                                   |
-| `content/videos.json`          | YouTube videos shown in the Videos section: the video `id` (the `v=` value of a watch URL) with a bilingual title and description. Thumbnails load from YouTube; the player is embedded only after a visitor presses play        |
-| `public/mp3/`                  | The Hanuman Chalisa recording played from the Chalisa section (`temple.audio.chalisa`). It is streamed only when a visitor presses play                                                     |
-| `content/committee.json`       | Committee names, roles and optional `photo` paths                                                                                                                                              |
-| `data/site.ts`                 | Temple address, contacts, image paths, timings, gallery, puja services, weekday specials, UPI, maps, geo and socials                                                                           |
-| `translations/index.ts`        | Shared Hindi and English UI copy                                                                                                                                                               |
-| `hanuman-chalisa-roman.txt`    | Roman transliteration shown in the English reader tab                                                                                                                                          |
-| `components/TempleWebsite.tsx` | Page composition, bilingual opening prayer and provisional policy text                                                                                                                         |
-| `components/Donation.tsx`      | Donation presentation and QR generation                                                                                                                                                        |
-| `components/Contact.tsx`       | Form integration and contact/map presentation                                                                                                                                                  |
-| `app/globals.css`              | Responsive styles and light/dark theme tokens                                                                                                                                                  |
-| `app/layout.tsx`               | SEO metadata and structured data                                                                                                                                                               |
-| `public/images/`               | Local WebP placeholder photography                                                                                                                                                             |
+Most day-to-day changes are edits to a JSON file or to `data/site.ts`. No code knowledge is needed beyond keeping the file structure intact.
 
-Localized values use `{ hi, en }` objects. The `bi()` helper creates them. A new language requires adding its code to `Lang`, supplying translations for the localized fields, and extending the language selector and persistence validation.
+| File                         | What to edit                                                                                                                                    |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `content/announcements.json` | Temple notices. The first notice marked `important: true` becomes the banner at the top of the page                                             |
+| `content/events.json`        | Events and festivals. One-off festivals take an ISO `date` (`YYYY-MM-DD`); weekly pujas take a `weekday` (0 = Sunday)                           |
+| `content/videos.json`        | YouTube videos. Each entry needs the video `id` (the `v=` value of a watch URL) plus a Hindi and English title and description                  |
+| `content/committee.json`     | Committee names, roles, optional `phone` (10-digit mobile, shown as a call link) and optional photo paths                                        |
+| `data/site.ts`               | Address, phone, WhatsApp, email, timings, gallery, puja services, weekday specials, UPI details, map links, image and audio paths, social links |
+| `translations/index.ts`      | All shared Hindi and English interface text                                                                                                     |
+| `public/images/`             | Photographs (WebP recommended) and the UPI QR image `upi-qr.png`                                                                                |
+| `public/mp3/`                | The Hanuman Chalisa recording                                                                                                                   |
+| `hanuman-chalisha-hindi.txt` | Chalisa text in Devanagari, read at build time                                                                                                  |
+| `hanuman-chalisa-roman.txt`  | Chalisa transliteration in Roman script, read at build time                                                                                     |
 
-### Before publishing as the official site
+Localized values are objects with `hi` and `en` keys. In TypeScript files the `bi("हिंदी", "English")` helper creates them.
 
-1. Replace the illustrative photos with approved photographs of Mahavir Mandir. The current images are explicitly labeled as illustrative. Keep a `hero-mobile.webp` (about 960px wide) for phones.
-2. Set `temple.siteUrl` to the final HTTPS domain. It drives the canonical URL, social metadata and sitemap.
-3. Replace `mapEmbed` and `directions` with the exact temple location. Currently they show the general Kutumba area. Update the provisional map notice after verification.
-4. Confirm the `timings` array and update the visible provisional timing notice. Set `timingsVerified: true` after official confirmation: the quick-info bar then shows a live open/closed indicator based on the first and last timing, and opening hours are added to structured data. Set `locationVerified: true` with real `geo` coordinates to add them too.
-5. Replace committee names/roles, event schedules and announcements. Committee portraits currently use anonymous placeholders; personal phone numbers are not displayed.
-6. Add approved history and policy text. No founding dates, miracles, registrations or tax benefits have been invented.
-7. Configure donations and the contact form as described below.
-8. Add social links to `temple.socials`; unconfigured social networks are not displayed.
+After editing, run `npm run build` and deploy the new `out/` folder.
+
+### Photos
+
+Put images in `public/images/` and reference them from `data/site.ts` (`temple.images`) or from the gallery list in the same file. Keep a smaller `hero-mobile.webp` (about 960 px wide) for phones. WebP or compressed JPEG keeps the site fast on mobile data.
+
+The current hero, courtyard and puja photographs are stock images, not photographs of Mahavir Mandir. Sources are listed at the end of this file. Replace them with the temple's own photographs when available.
 
 ### Donations
 
-Donations use the temple committee's UPI ID (`temple.donation.upi`) and recipient name (`temple.donation.recipient`) from `data/site.ts`. The bank-issued QR image is served from `public/images/upi-qr.png` (`temple.images.upiQr`); replace the file to update the QR. The mobile payment link is the encoded `upi://pay?pa=…&pn=…` URI built from the same values. Check the receiving account name using a real UPI application after any change. No payment confirmation, receipts, refunds or tax claims are simulated.
+Donations use the UPI ID and recipient name in `temple.donation` and the bank-issued QR image at `public/images/upi-qr.png`. To change either:
 
-### Contact form
+1. Update `upi` and `recipient` in `data/site.ts`. The recipient name must match the name shown by the bank, because the site asks visitors to verify it before paying.
+2. Replace `public/images/upi-qr.png` with the new QR image.
+3. Update the donation policy text in `components/TempleWebsite.tsx` if the account changes.
 
-Without an endpoint the form validates entries and explicitly reports that no message was sent. For live delivery, set `NEXT_PUBLIC_CONTACT_ENDPOINT` (or `temple.contactEndpoint`) to a public form endpoint accepting JSON fields `name`, `mobile`, `email`, `subject`, and `message`. A successful 2xx response displays success; other responses display failure. Configure CORS, server-side validation, spam protection and delivery at the service. Public endpoint URLs are visible to browsers; never put private API keys in this field. Update the privacy policy when connecting a service.
+The site displays the QR and a payment link only. It does not process payments, issue receipts or make tax claims.
 
-Copy `.env.example` to `.env.local` for optional public deployment settings. Rebuild after changing environment variables.
+### Chalisa audio
 
-### Chalisa
+The recording at `public/mp3/Shri_Hanuman_Chalisa.mp3` is streamed only when a visitor presses play, so it does not slow down page loading. To replace it, drop in a new MP3 (128 kbps or lower, ideally under 10 MB) and update `temple.audio.chalisa` in `data/site.ts` if the file name changes.
 
-The reader dialog has two tabs: the complete Hindi text and a Roman transliteration, plus a **Print / Save as PDF** button that prints only the reader. `hanuman-chalisha-hindi.txt` and `hanuman-chalisa-roman.txt` are the sources of truth: the server reads them during the static build. Edit and rebuild to update. The original Hindi wording is preserved; only whitespace and verse grouping are adjusted for display. No translation is provided, only transliteration.
+### Videos
 
-### Analytics
+Add entries to `content/videos.json`. Thumbnails come from YouTube; the player is embedded through the privacy-enhanced `youtube-nocookie.com` domain only after a visitor presses play.
 
-Set `NEXT_PUBLIC_GA_ID` to a Google Analytics measurement ID to enable a consent banner. The tag loads only after the visitor accepts, and the choice is stored in the browser. Leave it empty to show no banner and load nothing.
+## Configuration
 
-### Offline support
+Copy `.env.example` to `.env.local` and fill in what you need. Rebuild after any change; these values are baked in at build time.
 
-A small service worker (`public/sw.js`) caches the page shell over HTTPS so the Chalisa reader keeps working offline. Bump the `CACHE` name when you need to force old caches out.
+| Variable                       | Purpose                                                                                                                                                                                                                     |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL`         | Final HTTPS domain. Drives canonical URLs, social sharing metadata and the sitemap                                                                                                                                          |
+| `NEXT_PUBLIC_CONTACT_ENDPOINT` | Public form endpoint (for example Formspree or Web3Forms) that accepts JSON with `name`, `mobile`, `email`, `subject` and `message`. Without it the form runs in demo mode and clearly tells visitors that nothing was sent |
+| `NEXT_PUBLIC_GA_ID`            | Google Analytics measurement ID. Enables a consent banner; the tag loads only after the visitor accepts. Leave empty to load nothing                                                                                        |
 
-### Language flash
+Never put private API keys in these variables. They are visible to every visitor.
 
-An inline script in `app/layout.tsx` applies the stored theme and language before paint. When English is stored, the page stays hidden for one frame until React has switched the copy, so visitors never see Hindi flash first.
+### Verification flags in `data/site.ts`
+
+- `timingsVerified: true` turns on the live open/closed indicator and adds opening hours to search-engine structured data. Set it once the committee confirms the timings.
+- `locationVerified: true` together with real `geo` coordinates adds the location to structured data. Also replace `mapEmbed` and `directions` with the exact temple location; they currently point to the general Kutumba area.
 
 ## Deployment
 
-- **cPanel / Apache:** Upload the **contents** of `out/` to the domain's `public_html`. Keep `_next/` and all assets. Node.js is not required. The default configuration targets a domain root; a subdirectory deployment requires a matching Next.js `basePath` and asset paths.
-- **Netlify:** Build command `npm run build`; publish directory `out`. A `netlify.toml` is included.
-- **Cloudflare Pages:** Build command `npm run build`; output directory `out`. Use the static export, without a server adapter.
-- **Vercel:** Import the project, use the Next.js preset and `npm run build`. The configured output is static.
+`npm run build` produces the whole site in `out/`. Deploy that folder to any static host.
 
-Set a supported Node.js version on the build platform. Configure your real domain before building. HTTPS is recommended for clipboard support. Images and fonts are local; Google Maps connects to Google only when the visitor loads the map. External directions and WhatsApp open only on user action.
+- **Cloudflare Pages, Netlify, Vercel.** Connect the GitHub repository. Build command `npm run build`, output directory `out`. A `netlify.toml` is included. Set the environment variables above in the host's dashboard. Free tiers are sufficient.
+- **cPanel or other Apache hosting.** Upload the contents of `out/` to `public_html`, including the `_next/` folder and the `.htaccess` file, which handles HTTPS redirection and caching. Node.js is not required on the server.
 
-## Checks
+The site expects to live at the domain root. A subdirectory deployment needs a matching Next.js `basePath`.
 
-With the local server running:
+## Tests
+
+With a server running on port 3000:
 
 ```sh
 npx playwright install chromium
 npm test
 ```
 
-The browser tests cover language/theme persistence, automatic next-event highlighting, the announcement banner, the Chalisa reader in both scripts, gallery filters with keyboard navigation, the mobile menu (focus trap and Escape), the donation QR and UPI link, Indian mobile validation and demo form status, in-page links, image loading, console errors, accessibility checks in both themes, and widths 320, 375, 430, 768, 1024, 1440 and 1920 pixels. `PW_CHANNEL=chrome npm test` can use an installed Chrome browser. Screenshots are written under ignored `test-results/`.
+The browser tests cover language and theme persistence, event highlighting, the announcement banner, the Chalisa reader and audio player, video previews, gallery filters and lightbox, the mobile menu, the donation QR and UPI link, contact form validation, in-page links, image loading, console errors, accessibility in both themes, and viewport widths from 320 to 1920 pixels.
 
-Lighthouse targets are goals, not measured guarantees. Check the deployed production build after final photos, content and hosting configuration are in place.
+## Project structure
 
-## Image and font sources
+```
+app/            Layout, global styles, SEO metadata, robots and sitemap
+components/     React components (page composition, donation, contact, videos, Chalisa player and reader)
+content/        Editable JSON content
+data/site.ts    Central temple configuration
+translations/   Hindi and English interface text
+public/         Static assets: images, MP3, icons, service worker, .htaccess
+tests/          Playwright browser tests
+docs/           Original design brief
+```
 
-The supplied images are placeholders, not photographs of Mahavir Mandir, Erka:
+## Privacy
 
-- Hero: [Historic Sandstone Temple in Badami, India — Pexels](https://www.pexels.com/photo/historic-sandstone-temple-in-badami-india-32563589/)
-- Courtyard: [Intricate Architecture of a Hindu Temple Courtyard — Pexels](https://www.pexels.com/photo/intricate-architecture-of-a-hindu-temple-courtyard-35858173/)
-- Puja kalash: [Unsplash image](https://images.unsplash.com/photo-1606293926075-69a00dbfde81)
+Fonts, photographs and the Chalisa audio are served from the site itself. Google Maps, YouTube and WhatsApp connect to their services only when a visitor chooses to load the map, play a video or open WhatsApp. Language, theme and analytics-consent choices are stored in the visitor's browser only.
 
-The original design brief is kept in `docs/instructions.md`.
+## Credits
 
-Fonts: DM Sans, Cormorant, Noto Sans Devanagari and Noto Serif Devanagari, distributed locally through Fontsource. Font license files are included with their packages. Icons are provided by Lucide.
+Stock photographs used as placeholders:
+
+- Hero: [Historic Sandstone Temple in Badami, India, Pexels](https://www.pexels.com/photo/historic-sandstone-temple-in-badami-india-32563589/)
+- Courtyard: [Intricate Architecture of a Hindu Temple Courtyard, Pexels](https://www.pexels.com/photo/intricate-architecture-of-a-hindu-temple-courtyard-35858173/)
+- Puja kalash: [Unsplash](https://images.unsplash.com/photo-1606293926075-69a00dbfde81)
+
+Fonts: DM Sans, Cormorant, Noto Sans Devanagari and Noto Serif Devanagari via Fontsource. Icons: Lucide.

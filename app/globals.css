@@ -1826,6 +1826,33 @@ html[lang="hi"] .photo-note {
   box-shadow: var(--shadow);
 }
 
+.member-more {
+  border-style: dashed;
+  border-color: var(--gold-soft);
+  background: var(--soft);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  color: inherit;
+}
+
+.member-more .member-avatar {
+  background: var(--card);
+  color: var(--maroon);
+}
+
+.member-more .text-link {
+  margin-top: 12px;
+}
+
+.members-modal {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
 .member-avatar {
   width: 110px;
   height: 110px;
@@ -1859,6 +1886,25 @@ html[lang="hi"] .photo-note {
   font-size: 19px;
   color: var(--maroon);
   margin-bottom: 4px;
+}
+
+.member-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--soft);
+  color: var(--maroon);
+  font-size: 13.5px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  transition: background 0.2s;
+}
+
+.member-phone:hover {
+  background: var(--gold-soft);
 }
 
 .member p {
@@ -3229,6 +3275,14 @@ body:has(.nav.open) .back-to-top {
   .committee-grid {
     grid-template-columns: 1fr 1fr;
     gap: 12px;
+  }
+
+  .member-more {
+    grid-column: 1 / -1;
+  }
+
+  .members-modal {
+    grid-template-columns: 1fr 1fr;
   }
 
   .member {

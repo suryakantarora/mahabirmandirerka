@@ -39,6 +39,7 @@ import {
   events,
   gallery,
   Lang,
+  Member,
   navigation,
   services,
   specialDays,
@@ -184,6 +185,7 @@ function Website({
   const [category, setCategory] = useState(0);
   const [photo, setPhoto] = useState<number | null>(null);
   const [reader, setReader] = useState<Lang | null>(null);
+  const [allMembers, setAllMembers] = useState(false);
   const [policy, setPolicy] = useState<
     "privacy" | "terms" | "donationPolicy" | null
   >(null);
@@ -869,26 +871,28 @@ function Website({
               center
             />
             <div className="committee-grid">
-              {committee.map((member) => (
-                <article className="member" key={member.name.en}>
-                  <div className="member-avatar">
-                    {member.photo ? (
-                      <img src={member.photo} alt="" loading="lazy" />
-                    ) : (
-                      <>
-                        <Users size={36} strokeWidth={1.1} />
-                        <span>{t("photoSoon")}</span>
-                      </>
-                    )}
-                  </div>
-                  <h3>{l(member.name)}</h3>
-                  <p>{l(member.role)}</p>
-                </article>
+              {committee.slice(0, FEATURED_MEMBERS).map((member) => (
+                <MemberCard key={member.name.en} member={member} />
               ))}
+              {committee.length > FEATURED_MEMBERS && (
+                <button
+                  className="member member-more"
+                  onClick={() => setAllMembers(true)}
+                >
+                  <span className="member-avatar">
+                    <Users size={36} strokeWidth={1.1} />
+                  </span>
+                  <h3>{t("viewAllMembers")}</h3>
+                  <p>
+                    {committee.length} {t("membersLabel")}
+                  </p>
+                  <span className="text-link">
+                    {t("viewAll")}
+                    <ArrowUpRight size={16} />
+                  </span>
+                </button>
+              )}
             </div>
-            <p className="small muted center image-note">
-              {t("committeeNote")}
-            </p>
           </div>
         </section>
 
@@ -1115,6 +1119,19 @@ function Website({
         </Modal>
       )}
 
+      {allMembers && (
+        <Modal
+          title={t("committee")}
+          wide
+          onClose={() => setAllMembers(false)}
+        >
+          <div className="committee-grid members-modal">
+            {committee.map((member) => (
+              <MemberCard key={member.name.en} member={member} />
+            ))}
+          </div>
+        </Modal>
+      )}
       {policy && (
         <Modal title={t(policy)} onClose={() => setPolicy(null)}>
           <p>{l(policyText[policy])}</p>
@@ -1128,14 +1145,42 @@ function Website({
   );
 }
 
+const FEATURED_MEMBERS = 4;
+
+function MemberCard({ member }: { member: Member }) {
+  const { t, l } = useTranslation();
+  return (
+    <article className="member">
+      <div className="member-avatar">
+        {member.photo ? (
+          <img src={member.photo} alt="" loading="lazy" />
+        ) : (
+          <>
+            <Users size={36} strokeWidth={1.1} />
+            <span>{t("photoSoon")}</span>
+          </>
+        )}
+      </div>
+      <h3>{l(member.name)}</h3>
+      <p>{l(member.role)}</p>
+      {member.phone && (
+        <a className="member-phone" href={`tel:+91${member.phone}`}>
+          <Phone size={14} />
+          {member.phone}
+        </a>
+      )}
+    </article>
+  );
+}
+
 const policyText = {
   privacy: bi(
     "यह प्रारंभिक वेबसाइट भाषा, रंग रूप और आँकड़ा-सहमति की पसंद आपके ब्राउज़र में सहेजती है। डेमो संपर्क फ़ॉर्म कोई संदेश नहीं भेजता और फ़ॉर्म के विवरण सहेजता नहीं है। नक्शा लोड करने पर Google Maps से और वीडियो चलाने पर YouTube से कनेक्शन होता है। गुमनाम उपयोग आँकड़े केवल आपकी सहमति के बाद ही एकत्र किए जाते हैं। WhatsApp एवं अन्य बाहरी लिंक अपनी गोपनीयता नीतियों के अधीन हैं। आधिकारिक नीति का अंतिम विवरण जल्द जोड़ा जाएगा।",
     "This initial website stores language, theme and analytics-consent preferences in your browser. The demo contact form does not send or store form entries. Loading the map connects to Google Maps, and playing a video connects to YouTube. Anonymous usage statistics are collected only after you consent. WhatsApp and other external links are subject to their own privacy policies. The final official policy will be added when available.",
   ),
   terms: bi(
-    "यह वेबसाइट मंदिर की जानकारी का प्रारंभिक संस्करण है। चित्र, समिति पद, कार्यक्रम एवं समय में नमूना सामग्री शामिल है। यात्रा या आयोजन से पहले मंदिर से जानकारी की पुष्टि करें। आधिकारिक नियम जल्द उपलब्ध होंगे।",
-    "This is an initial informational website. Photographs, committee roles, events and timings include placeholder content. Confirm details with the temple before a visit or event. Official terms will be added when available.",
+    "यह वेबसाइट मंदिर की जानकारी का प्रारंभिक संस्करण है। चित्र, कार्यक्रम एवं समय में नमूना सामग्री शामिल है। यात्रा या आयोजन से पहले मंदिर से जानकारी की पुष्टि करें। आधिकारिक नियम जल्द उपलब्ध होंगे।",
+    "This is an initial informational website. Photographs, events and timings include placeholder content. Confirm details with the temple before a visit or event. Official terms will be added when available.",
   ),
   donationPolicy: bi(
     "दान UPI के माध्यम से सीधे मंदिर समिति के खाते (MAHABIR MANDIR NIRMAN SAMITI) में प्राप्त होता है। भुगतान से पहले अपने UPI ऐप में प्राप्तकर्ता का नाम सत्यापित करें। रसीद, धन-वापसी एवं कर संबंधी आधिकारिक जानकारी अभी उपलब्ध नहीं है। प्रश्नों के लिए मंदिर से संपर्क करें।",
