@@ -1,6 +1,7 @@
 import eventsJson from "@/content/events.json";
 import announcementsJson from "@/content/announcements.json";
 import committeeJson from "@/content/committee.json";
+import videosJson from "@/content/videos.json";
 
 export type Lang = "hi" | "en";
 export type Localized = Record<Lang, string>;
@@ -21,9 +22,9 @@ export const temple = {
     "एरका, कुटुम्बा, औरंगाबाद, बिहार – 824111, भारत",
     "Erka, Kutumba, Aurangabad, Bihar – 824111, India",
   ),
-  phone: "+91 8083705398",
-  phoneLink: "+918083705398",
-  whatsapp: "918083705398",
+  phone: "+91 7004974853",
+  phoneLink: "+917004974853",
+  whatsapp: "917004974853",
   email: "erka.temple@gmail.com",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://example.com",
   /** Replace with the exact embed URL once the location is verified. */
@@ -36,9 +37,8 @@ export const temple = {
   locationVerified: false,
   timingsVerified: false,
   donation: {
-    enabled: false,
-    upi: "mahavirmandir@upi",
-    recipient: "Mahavir Mandir",
+    upi: "7004974853m@pnb",
+    recipient: "MAHABIR MANDIR NIRMAN SAMITI",
   },
   contactEndpoint: process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || "",
   /** Google Analytics measurement ID (G-XXXX). Loaded only after visitor consent. */
@@ -50,6 +50,11 @@ export const temple = {
     heroMobile: "/images/hero-mobile.webp",
     temple: "/images/architecture.webp",
     puja: "/images/puja.webp",
+    upiQr: "/images/upi-qr.png",
+  },
+  audio: {
+    /** Full Hanuman Chalisa recording, streamed only when a visitor presses play. */
+    chalisa: "/mp3/Shri_Hanuman_Chalisa.mp3",
   },
 };
 
@@ -59,6 +64,7 @@ export const navigation = [
   ["timings", bi("दर्शन एवं समय", "Timings")],
   ["events", bi("कार्यक्रम", "Events")],
   ["gallery", bi("गैलरी", "Gallery")],
+  ["videos", bi("वीडियो", "Videos")],
   ["committee", bi("समिति", "Committee")],
   ["contact", bi("संपर्क", "Contact")],
 ] as const;
@@ -137,6 +143,14 @@ export const announcements: Announcement[] = announcementsJson;
 
 export type Member = { name: Localized; role: Localized; photo: string };
 export const committee: Member[] = committeeJson;
+
+export type Video = {
+  /** YouTube video ID (the `v=` value in a watch URL). */
+  id: string;
+  title: Localized;
+  description: Localized;
+};
+export const videos: Video[] = videosJson;
 
 export const categories = [
   bi("सभी", "All"),

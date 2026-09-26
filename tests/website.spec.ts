@@ -71,8 +71,26 @@ test("language, theme, events, chalisa reader, gallery, policies and demo form",
   await expect(page.getByRole("dialog")).toContainText(`1 / ${total}`);
   await page.keyboard.press("Escape");
 
-  // Safe donation mode.
-  await expect(page.locator('a[href^="upi:"]')).toHaveCount(0);
+  // Chalisa audio is present but not downloaded until played.
+  await expect(page.locator(".chalisa-player audio")).toHaveAttribute(
+    "src",
+    /\.mp3$/,
+  );
+  await expect(page.locator(".chalisa-player audio")).toHaveAttribute(
+    "preload",
+    "none",
+  );
+
+  // Video previews embed the player only after play is pressed.
+  await expect(page.locator(".video-frame iframe")).toHaveCount(0);
+  await page.locator(".video-poster").first().click();
+  await expect(page.locator(".video-frame iframe").first()).toHaveAttribute(
+    "src",
+    /youtube-nocookie\.com\/embed\//,
+  );
+
+  // Donation QR and UPI payment link.
+  await expect(page.locator('a[href^="upi:"]')).toHaveCount(1);
   await expect(page.locator(".qr-frame img")).toBeVisible();
 
   // Contact form validation and demo mode.

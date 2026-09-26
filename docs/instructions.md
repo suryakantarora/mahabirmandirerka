@@ -23,7 +23,7 @@ Erka, Kutumba, Aurangabad, Bihar – 824111, India
 Use a dummy Google Maps location/embed for now. Structure the implementation so the actual Google Maps location can easily be replaced later.
 
 **Contact Number:**  
-+91 8083705398
++91 7004974853
 
 **Email:**  
 erka.temple@gmail.com
@@ -578,7 +578,7 @@ Aurangabad, Bihar – 824111
 India
 
 Phone:
-+91 8083705398
++91 7004974853
 
 Email:
 erka.temple@gmail.com
@@ -625,7 +625,7 @@ English:
 
 Use:
 
-+91 8083705398
++91 7004974853
 
 Make sure the floating button does not obstruct important mobile UI.
 
@@ -715,7 +715,7 @@ Column 4:
 
 Contact
 
-+91 8083705398  
++91 7004974853  
 erka.temple@gmail.com
 
 Add social placeholders:

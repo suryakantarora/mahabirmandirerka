@@ -19,7 +19,6 @@ export const copy = {
     "भक्ति में शक्ति, सेवा में शांति",
     "Strength in devotion. Peace in service.",
   ),
-  illustrative: bi("प्रतीकात्मक चित्र", "Illustrative photograph"),
   scroll: bi("नीचे देखें", "Scroll"),
   timings: bi("दर्शन एवं आरती का समय", "Darshan & Aarti Timings"),
   darshan: bi("दर्शन एवं समय", "Darshan & Timings"),
@@ -81,6 +80,18 @@ export const copy = {
     "Online puja booking will be added in future. For now, please contact the temple.",
   ),
   chalisa: bi("श्री हनुमान चालीसा", "Shri Hanuman Chalisa"),
+  listen: bi("चालीसा सुनें", "Listen to the Chalisa"),
+  pause: bi("रोकें", "Pause"),
+  seek: bi("समय बदलें", "Seek"),
+  audioHint: bi(
+    "पूर्ण पाठ • चलाने पर ऑडियो लोड होगा",
+    "Full recitation • Audio loads when you press play",
+  ),
+  loadingAudio: bi("ऑडियो लोड हो रहा है…", "Loading audio…"),
+  audioFailed: bi(
+    "ऑडियो चलाया नहीं जा सका। कृपया पुनः प्रयास करें।",
+    "The audio could not be played. Please try again.",
+  ),
   chalisaDesc: bi(
     "मन में विश्वास, हृदय में भक्ति। कुछ पल बजरंगबली के चरणों में।",
     "Faith in the mind. Devotion in the heart. Take a moment with Bajrangbali.",
@@ -95,14 +106,19 @@ export const copy = {
   ),
   gallery: bi("मंदिर की झलकियाँ", "Glimpses of devotion"),
   galleryKicker: bi("आस्था के सुंदर पल", "Moments of faith"),
-  imageNote: bi(
-    "प्रतीकात्मक चित्र • वास्तविक मंदिर की तस्वीरें जल्द उपलब्ध होंगी।",
-    "Illustrative photographs • Actual temple photographs will be added soon.",
-  ),
   noPhotos: bi(
     "इस श्रेणी में अभी कोई चित्र नहीं है।",
     "No photographs in this category yet.",
   ),
+  videos: bi("भजन एवं वीडियो", "Bhajans & Videos"),
+  videosKicker: bi("देखें और सुनें", "Watch and listen"),
+  playVideo: bi("वीडियो चलाएँ", "Play video"),
+  watchOnYouTube: bi("YouTube पर देखें", "Watch on YouTube"),
+  videoHint: bi(
+    "वीडियो चलाने पर YouTube से कनेक्शन होता है।",
+    "Playing a video connects to YouTube.",
+  ),
+  noVideos: bi("अभी कोई वीडियो उपलब्ध नहीं है।", "No videos are available yet."),
   committee: bi("मंदिर प्रबंधन समिति", "Temple Management Committee"),
   committeeKicker: bi("सेवा ही संकल्प", "United in service"),
   committeeNote: bi(
@@ -118,23 +134,15 @@ export const copy = {
     "आपका सहयोग मंदिर के रखरखाव, पूजा-पाठ, धार्मिक आयोजनों एवं सामाजिक कार्यों में उपयोग किया जाता है।",
     "Your contribution helps support temple maintenance, worship activities, religious events and community initiatives.",
   ),
-  donationDemo: bi(
-    "नमूना भुगतान विवरण — अभी भुगतान न करें।",
-    "Demo payment details — do not pay yet.",
-  ),
   verify: bi(
-    "भुगतान करने से पहले अपने UPI ऐप में प्राप्तकर्ता का नाम 'Mahavir Mandir' अवश्य सत्यापित करें।",
-    "Before paying, verify that the recipient name in your UPI app is 'Mahavir Mandir'.",
+    "भुगतान करने से पहले अपने UPI ऐप में प्राप्तकर्ता का नाम 'MAHABIR MANDIR NIRMAN SAMITI' अवश्य सत्यापित करें।",
+    "Before paying, verify that the recipient name in your UPI app is 'MAHABIR MANDIR NIRMAN SAMITI'.",
   ),
   receipt: bi(
     "दान रसीद एवं कर छूट का विवरण आधिकारिक जानकारी मिलने के बाद जोड़ा जाएगा।",
     "Donation receipts and tax exemption details will be added after official information is available.",
   ),
   scan: bi("किसी भी UPI ऐप से स्कैन करें", "Scan with any UPI app"),
-  qrDemo: bi(
-    "केवल नमूना QR • भुगतान सक्षम नहीं है",
-    "Demo QR only • Payments are disabled",
-  ),
   upiApps: bi(
     "Google Pay, PhonePe, Paytm या BHIM — किसी भी UPI ऐप से",
     "Works with Google Pay, PhonePe, Paytm, BHIM and any UPI app",

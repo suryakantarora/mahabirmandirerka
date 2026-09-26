@@ -26,6 +26,8 @@ npm run typecheck
 | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `content/events.json`          | Events and festivals. Give one-off festivals an ISO `date`; weekly pujas use `weekday` (0 = Sunday). The next occurrence is highlighted and a countdown appears for the nearest dated festival |
 | `content/announcements.json`   | Temple notices. The first `important: true` notice becomes the banner at the top of the page                                                                                                   |
+| `content/videos.json`          | YouTube videos shown in the Videos section: the video `id` (the `v=` value of a watch URL) with a bilingual title and description. Thumbnails load from YouTube; the player is embedded only after a visitor presses play        |
+| `public/mp3/`                  | The Hanuman Chalisa recording played from the Chalisa section (`temple.audio.chalisa`). It is streamed only when a visitor presses play                                                     |
 | `content/committee.json`       | Committee names, roles and optional `photo` paths                                                                                                                                              |
 | `data/site.ts`                 | Temple address, contacts, image paths, timings, gallery, puja services, weekday specials, UPI, maps, geo and socials                                                                           |
 | `translations/index.ts`        | Shared Hindi and English UI copy                                                                                                                                                               |
@@ -52,9 +54,7 @@ Localized values use `{ hi, en }` objects. The `bi()` helper creates them. A new
 
 ### Donations
 
-By default `temple.donation.enabled` is `false`. The displayed `mahavirmandir@upi` is a dummy. The demo QR contains plain informational text, **not a payment URI**. No UPI payment link is rendered in this mode.
-
-After receiving and independently verifying the official UPI ID, replace it and set `enabled: true`. The QR and mobile-compatible payment link derive from the same encoded `upi://pay?pa=…&pn=…` URI. The dummy ID remains blocked even if `enabled` is accidentally switched on. Check the receiving account name using a real UPI application before launch. No payment confirmation, receipts, refunds or tax claims are simulated.
+Donations use the temple committee's UPI ID (`temple.donation.upi`) and recipient name (`temple.donation.recipient`) from `data/site.ts`. The bank-issued QR image is served from `public/images/upi-qr.png` (`temple.images.upiQr`); replace the file to update the QR. The mobile payment link is the encoded `upi://pay?pa=…&pn=…` URI built from the same values. Check the receiving account name using a real UPI application after any change. No payment confirmation, receipts, refunds or tax claims are simulated.
 
 ### Contact form
 
@@ -96,7 +96,7 @@ npx playwright install chromium
 npm test
 ```
 
-The browser tests cover language/theme persistence, automatic next-event highlighting, the announcement banner, the Chalisa reader in both scripts, gallery filters with keyboard navigation, the mobile menu (focus trap and Escape), safe donation mode, Indian mobile validation and demo form status, in-page links, image loading, console errors, accessibility checks in both themes, and widths 320, 375, 430, 768, 1024, 1440 and 1920 pixels. `PW_CHANNEL=chrome npm test` can use an installed Chrome browser. Screenshots are written under ignored `test-results/`.
+The browser tests cover language/theme persistence, automatic next-event highlighting, the announcement banner, the Chalisa reader in both scripts, gallery filters with keyboard navigation, the mobile menu (focus trap and Escape), the donation QR and UPI link, Indian mobile validation and demo form status, in-page links, image loading, console errors, accessibility checks in both themes, and widths 320, 375, 430, 768, 1024, 1440 and 1920 pixels. `PW_CHANNEL=chrome npm test` can use an installed Chrome browser. Screenshots are written under ignored `test-results/`.
 
 Lighthouse targets are goals, not measured guarantees. Check the deployed production build after final photos, content and hosting configuration are in place.
 

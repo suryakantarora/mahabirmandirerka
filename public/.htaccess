@@ -12,6 +12,9 @@ ErrorDocument 404 /404.html
   <FilesMatch "\.(js|css|woff2?|webp|svg)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
+  <FilesMatch "\.(mp3)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
   <FilesMatch "\.(html|webmanifest|xml|txt)$">
     Header set Cache-Control "no-cache"
   </FilesMatch>

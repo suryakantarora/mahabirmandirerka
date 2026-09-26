@@ -1,6 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
-import QRCode from "qrcode";
+import { useState } from "react";
 import {
   Copy,
   Check,
@@ -15,20 +14,8 @@ import { TempleMark, useTranslation } from "./ui";
 
 export default function Donation() {
   const { t, lang } = useTranslation();
-  const [qr, setQr] = useState("");
-  const [status, setStatus] = useState<"" | "copied" | "failed" | "noqr">("");
-  const enabled =
-    temple.donation.enabled && temple.donation.upi !== "mahavirmandir@upi";
+  const [status, setStatus] = useState<"" | "copied" | "failed">("");
   const uri = `upi://pay?pa=${encodeURIComponent(temple.donation.upi)}&pn=${encodeURIComponent(temple.donation.recipient)}`;
-
-  useEffect(() => {
-    QRCode.toDataURL(
-      enabled ? uri : "DEMO ONLY - Mahavir Mandir. No payment is enabled.",
-      { width: 240, margin: 2, color: { dark: "#4a1414", light: "#ffffff" } },
-    )
-      .then(setQr)
-      .catch(() => setStatus("noqr"));
-  }, [enabled, uri]);
 
   async function copy() {
     try {
@@ -44,11 +31,7 @@ export default function Donation() {
       ? t("copied")
       : status === "failed"
         ? t("copyFail")
-        : status === "noqr"
-          ? lang === "hi"
-            ? "QR उपलब्ध नहीं है।"
-            : "QR unavailable."
-          : "";
+        : "";
 
   return (
     <section id="donate" className="donation-section">
@@ -84,22 +67,19 @@ export default function Donation() {
               ? "भक्ति से भरा एक छोटा योगदान"
               : "A small contribution, with a full heart"}
           </span>
-          {!enabled && <p className="demo-warning">{t("donationDemo")}</p>}
           <div className="qr-frame">
             <i />
             <i />
             <i />
             <i />
-            {qr && (
-              <img
-                src={qr}
-                alt={t(enabled ? "scan" : "qrDemo")}
-                width="200"
-                height="200"
-              />
-            )}
+            <img
+              src={temple.images.upiQr}
+              alt={t("scan")}
+              width="200"
+              height="200"
+            />
           </div>
-          <strong>{t(enabled ? "scan" : "qrDemo")}</strong>
+          <strong>{t("scan")}</strong>
           <p className="payment-brands">{t("upiApps")}</p>
           <div className="upi-line">
             <span>{temple.donation.upi}</span>
@@ -114,12 +94,10 @@ export default function Donation() {
           <p className="form-status" role="status">
             {statusText}
           </p>
-          {enabled && (
-            <a className="button primary mobile-upi" href={uri}>
-              <Smartphone size={18} />
-              {t("pay")}
-            </a>
-          )}
+          <a className="button primary mobile-upi" href={uri}>
+            <Smartphone size={18} />
+            {t("pay")}
+          </a>
         </div>
       </div>
     </section>

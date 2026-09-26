@@ -56,6 +56,8 @@ import {
   useTranslation,
 } from "./ui";
 import Donation from "./Donation";
+import Videos from "./Videos";
+import ChalisaPlayer from "./ChalisaPlayer";
 import Contact, { WhatsAppFloat } from "./Contact";
 import CompleteChalisa from "./CompleteChalisa";
 
@@ -458,8 +460,8 @@ function Website({
               src={temple.images.hero}
               alt={
                 lang === "hi"
-                  ? "हिंदू मंदिर का प्रतीकात्मक चित्र"
-                  : "Illustrative photograph of a Hindu temple"
+                  ? "हिंदू मंदिर"
+                  : "Hindu temple"
               }
               fetchPriority="high"
             />
@@ -529,20 +531,8 @@ function Website({
               <a href="#about" className="scroll-cue" aria-label={t("scroll")}>
                 <ChevronDown size={18} />
               </a>
-              <small>{t("illustrative")}</small>
             </div>
           </div>
-          <svg
-            className="hero-skyline"
-            viewBox="0 0 1440 90"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M0 90V60h80l20-24 20 24h60l30-38 30 38h90l25-30 25 30h120l40-52 40 52h140l30-36 30 36h100l22-26 22 26h110l45-58 45 58h110l28-32 28 32h80V90z"
-              fill="currentColor"
-            />
-          </svg>
         </section>
 
         {/* ---------- QUICK INFO ---------- */}
@@ -621,8 +611,8 @@ function Website({
                 src={temple.images.temple}
                 alt={
                   lang === "hi"
-                    ? "नक्काशीदार हिंदू मंदिर का प्रतीकात्मक चित्र"
-                    : "Illustrative carved Hindu temple courtyard"
+                    ? "नक्काशीदार हिंदू मंदिर"
+                    : "Carved Hindu temple courtyard"
                 }
                 loading="lazy"
                 width="1000"
@@ -640,7 +630,6 @@ function Website({
                   </small>
                 </span>
               </div>
-              <span className="photo-note">{t("illustrative")}</span>
             </div>
             <div className="about-content">
               <SectionTitle eyebrow={t("welcome")} title={t("about")} />
@@ -818,6 +807,7 @@ function Website({
                 {t("readRoman")}
               </button>
             </div>
+            <ChalisaPlayer />
           </div>
         </section>
 
@@ -865,9 +855,10 @@ function Website({
             ) : (
               <p className="center muted">{t("noPhotos")}</p>
             )}
-            <p className="small muted center image-note">{t("imageNote")}</p>
           </div>
         </section>
+
+        <Videos />
 
         {/* ---------- COMMITTEE ---------- */}
         <section id="committee" className="section committee-section">
@@ -1092,7 +1083,6 @@ function Website({
               <ChevronRight />
             </button>
           </div>
-          <p className="small center muted">{t("imageNote")}</p>
         </Modal>
       )}
 
@@ -1140,15 +1130,15 @@ function Website({
 
 const policyText = {
   privacy: bi(
-    "यह प्रारंभिक वेबसाइट भाषा, रंग रूप और आँकड़ा-सहमति की पसंद आपके ब्राउज़र में सहेजती है। डेमो संपर्क फ़ॉर्म कोई संदेश नहीं भेजता और फ़ॉर्म के विवरण सहेजता नहीं है। नक्शा लोड करने पर Google Maps से कनेक्शन होता है। गुमनाम उपयोग आँकड़े केवल आपकी सहमति के बाद ही एकत्र किए जाते हैं। WhatsApp एवं अन्य बाहरी लिंक अपनी गोपनीयता नीतियों के अधीन हैं। आधिकारिक नीति का अंतिम विवरण जल्द जोड़ा जाएगा।",
-    "This initial website stores language, theme and analytics-consent preferences in your browser. The demo contact form does not send or store form entries. Loading the map connects to Google Maps. Anonymous usage statistics are collected only after you consent. WhatsApp and other external links are subject to their own privacy policies. The final official policy will be added when available.",
+    "यह प्रारंभिक वेबसाइट भाषा, रंग रूप और आँकड़ा-सहमति की पसंद आपके ब्राउज़र में सहेजती है। डेमो संपर्क फ़ॉर्म कोई संदेश नहीं भेजता और फ़ॉर्म के विवरण सहेजता नहीं है। नक्शा लोड करने पर Google Maps से और वीडियो चलाने पर YouTube से कनेक्शन होता है। गुमनाम उपयोग आँकड़े केवल आपकी सहमति के बाद ही एकत्र किए जाते हैं। WhatsApp एवं अन्य बाहरी लिंक अपनी गोपनीयता नीतियों के अधीन हैं। आधिकारिक नीति का अंतिम विवरण जल्द जोड़ा जाएगा।",
+    "This initial website stores language, theme and analytics-consent preferences in your browser. The demo contact form does not send or store form entries. Loading the map connects to Google Maps, and playing a video connects to YouTube. Anonymous usage statistics are collected only after you consent. WhatsApp and other external links are subject to their own privacy policies. The final official policy will be added when available.",
   ),
   terms: bi(
     "यह वेबसाइट मंदिर की जानकारी का प्रारंभिक संस्करण है। चित्र, समिति पद, कार्यक्रम एवं समय में नमूना सामग्री शामिल है। यात्रा या आयोजन से पहले मंदिर से जानकारी की पुष्टि करें। आधिकारिक नियम जल्द उपलब्ध होंगे।",
     "This is an initial informational website. Photographs, committee roles, events and timings include placeholder content. Confirm details with the temple before a visit or event. Official terms will be added when available.",
   ),
   donationPolicy: bi(
-    "वर्तमान UPI ID और QR केवल नमूना हैं। अभी भुगतान न करें। आधिकारिक भुगतान विवरण सत्यापित होने के बाद ही दान सक्षम किया जाएगा। रसीद, धन-वापसी एवं कर संबंधी आधिकारिक जानकारी अभी उपलब्ध नहीं है। प्रश्नों के लिए मंदिर से संपर्क करें।",
-    "The current UPI ID and QR code are demonstrations only. Do not pay. Donations will be enabled only after official payment details are verified. Official receipt, refund and tax information is not yet available. Contact the temple with any questions.",
+    "दान UPI के माध्यम से सीधे मंदिर समिति के खाते (MAHABIR MANDIR NIRMAN SAMITI) में प्राप्त होता है। भुगतान से पहले अपने UPI ऐप में प्राप्तकर्ता का नाम सत्यापित करें। रसीद, धन-वापसी एवं कर संबंधी आधिकारिक जानकारी अभी उपलब्ध नहीं है। प्रश्नों के लिए मंदिर से संपर्क करें।",
+    "Donations are received via UPI directly into the temple committee account (MAHABIR MANDIR NIRMAN SAMITI). Verify the recipient name in your UPI app before paying. Official receipt, refund and tax information is not yet available. Contact the temple with any questions.",
   ),
 };
